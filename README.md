@@ -36,5 +36,14 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 ```
 4. Install. `sudo make install`
 
+
 ## Building RTSP server
-Build the server using this template: ```gcc file.c -o name `pkg-config --cflags --libs gstreamer-1.0 gstreamer-rtsp-server-1.0```
+Build the server using this template: ```gcc rtsp_server.c -o rtsp_server `pkg-config --cflags --libs gstreamer-1.0 gstreamer-rtsp-server-1.0```
+
+
+## Usage Guide
+The pipeline and server are launched using the two included launch files, image.launch and compressedImage.launch. The image topic must be stipulated using the topic argument, whilst other parameters of the stream are controlled through optional arguments including fps and bitrate.
+
+Example launch lines: 
+- ```roslaunch rtsp_ros image.launch topic:=/usb/image_raw fps:=15 bitrate:=2048```
+- ```roslaunch rtsp_ros compressedImage.launch topic:=/usb/jpg fps:=30 bitrate:=5000```
