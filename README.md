@@ -1,5 +1,5 @@
 # ros_rtsp
-ROS wrapper for gst_rtsp plugin allowing for easy streaming of ROS Image topics over RTSP. Server based upon examples frmo the gst_rtsp plugin: https://github.com/GStreamer/gst-rtsp-server
+ROS wrapper for gst_rtsp plugin allowing for easy streaming of ROS Image topics over RTSP. Server based upon examples from the gst_rtsp plugin: https://github.com/GStreamer/gst-rtsp-server
 
 
 ## Requirements
