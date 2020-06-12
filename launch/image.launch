@@ -1,0 +1,5 @@
+<launch>
+    <arg name="topic" default="test" />
+    <node name="test_rtsp_server" pkg="ros_rtsp" type="imageSetup.py" args="$(arg topic)">  
+    </node>
+</launch>
