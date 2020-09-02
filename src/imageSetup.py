@@ -10,6 +10,7 @@ from sensor_msgs.msg import Image
 class bashSetUp():
     def __init__(self):
         rospy.init_node("RTSP_Setup")
+        imageTopic = rospy.get_param("image_topic")
         self.imageSubscriber = rospy.Subscriber(str(imageTopic), Image, self.imageCallback)
         self.bitrate = rospy.get_param("bitrate")
         self.bridge = CvBridge()
@@ -29,7 +30,7 @@ class bashSetUp():
         while not rospy.is_shutdown():
             if (self.startServer == True and self.serverStarted==False):
                 print("Starting Stream")
-                bashCommand = 'rosrun ros_rtsp compressedImageStream.py | ~/catkin_ws/src/ros_camera/src/rtsp_server "fdsrc fd=0 ! queue2 ! videoparse format=i420 height=' + str(rospy.get_param("image_height")) + ' width=' + str(rospy.get_param("image_width")) + ' framerate='+ str(rospy.get_param("fps")) + '/1 ! videoconvert ! x264enc bitrate=' + str(rospy.get_param("bitrate")) + ' ! rtph264pay name=pay0 pt=96"'
+                bashCommand = 'rosrun ros_rtsp imageStream.py | ~/catkin_ws/src/ros_camera/src/rtsp_server "fdsrc fd=0 ! queue2 ! videoparse format=i420 height=' + str(rospy.get_param("image_height")) + ' width=' + str(rospy.get_param("image_width")) + ' framerate='+ str(rospy.get_param("fps")) + '/1 ! videoconvert ! x264enc bitrate=' + str(rospy.get_param("bitrate")) + ' ! rtph264pay name=pay0 pt=96"'
                 process = subprocess.Popen(bashCommand, shell=True)
                 self.serverStarted = True
                 
