@@ -1,5 +1,10 @@
 <launch>
     <arg name="topic" default="test" />
+    <param name="image_topic" value="$(arg topic)" />
+    <arg name="bitrate" default="2048" />
+    <param name="bitrate" value="$(arg bitrate)" />
+    <arg name="fps" default="15" />
+    <param name="fps" value="$(arg fps)" />
     <node name="test_rtsp_server" pkg="ros_rtsp" type="imageSetup.py" args="$(arg topic)">  
     </node>
 </launch>
