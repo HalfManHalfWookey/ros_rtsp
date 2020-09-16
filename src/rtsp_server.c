@@ -34,6 +34,11 @@ static GOptionEntry entries[] = {
 int
 main (int argc, char *argv[])
 {
+  /*Setting server url*/
+  char server_url[30] = "/";
+  strcat( server_url, argv[2]);
+  g_print("Setting server URL to: %s\n", server_url);
+
   GMainLoop *loop;
   GstRTSPServer *server;
   GstRTSPMountPoints *mounts;
@@ -71,8 +76,8 @@ main (int argc, char *argv[])
   gst_rtsp_media_factory_set_launch (factory, argv[1]);
   gst_rtsp_media_factory_set_shared (factory, TRUE);
 
-  /* attach the test factory to the /test url */
-  gst_rtsp_mount_points_add_factory (mounts, "/test", factory);
+  /* attach the test factory to the server url */
+  gst_rtsp_mount_points_add_factory (mounts, server_url, factory);
 
   /* don't need the ref to the mapper anymore */
   g_object_unref (mounts);
@@ -81,7 +86,7 @@ main (int argc, char *argv[])
   gst_rtsp_server_attach (server, NULL);
 
   /* start serving */
-  g_print ("stream ready at rtsp://127.0.0.1:%s/test\n", port);
+  g_print ("stream ready at rtsp://127.0.0.1:%s%s\n", port, server_url);
   g_main_loop_run (loop);
 
   return 0;

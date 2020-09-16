@@ -5,6 +5,12 @@
     <param name="bitrate" value="$(arg bitrate)" />
     <arg name="fps" default="15" />
     <param name="fps" value="$(arg fps)" />
-    <node name="test_rtsp_server" pkg="ros_rtsp" type="compressedImageSetup.py" args="$(arg topic)" output="screen">  
+    <arg name="url" default="test" />
+    <param name="url" value="$(arg url)" />
+    <arg name="speed-preset" default="5" />
+    <param name="speed-preset" value="$(arg speed-preset)" />
+    <arg name="qvalue" default="18" />
+    <param name="qvalue" value="$(arg qvalue)" />
+    <node name="test_rtsp_server" pkg="ros_rtsp" type="compressedImageSetup.py" output="screen">  
     </node>
 </launch>
