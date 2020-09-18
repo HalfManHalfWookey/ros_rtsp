@@ -10,7 +10,7 @@ from std_msgs.msg import Int64
 
 class CameraSwitch():
     def __init__(self):
-        rospy.init_node("RTSP_Server")
+        rospy.init_node("RTSP_Server", anonymous=True)
         self.imageSubscriber = rospy.Subscriber(str(rospy.get_param("image_topic")), Image, self.imageCallback)
         self.bridge = CvBridge()
         self.gst_str = "appsrc ! videoconvert ! video/x-raw, format=I420, width=" + str(rospy.get_param("image_width")) + ", height="+ str(rospy.get_param("image_height")) + ", framerate=30/1 ! fdsink"

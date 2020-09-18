@@ -9,7 +9,7 @@ from sensor_msgs.msg import Image
 
 class bashSetUp():
     def __init__(self):
-        rospy.init_node("RTSP_Setup")
+        rospy.init_node("RTSP_Setup",anonymous=True)
         imageTopic = rospy.get_param("image_topic")
         self.imageSubscriber = rospy.Subscriber(str(imageTopic), Image, self.imageCallback)
         self.bitrate = rospy.get_param("bitrate")
@@ -30,7 +30,7 @@ class bashSetUp():
         while not rospy.is_shutdown():
             if (self.startServer == True and self.serverStarted==False):
                 print("Starting Stream")
-                bashCommand = 'rosrun ros_rtsp imageStream.py | ~/catkin_ws/src/ros_rtsp/src/rtsp_server "fdsrc fd=0 ! queue2 ! videoparse format=i420 height={height} width={width} framerate={framerate}/1 ! videoconvert ! x264enc pass=5 quantizer={qvalue} speed-preset={speed} bitrate={bitrate} ! rtph264pay name=pay0 pt=96" {url}'.format(height=str(rospy.get_param("image_height")), width=str(rospy.get_param("image_width")), framerate=str(rospy.get_param("fps")), qvalue=str(rospy.get_param("qvalue")), speed=str(rospy.get_param("speed-preset")), bitrate=str(rospy.get_param("bitrate")), url=str(rospy.get_param("url")))
+                bashCommand = 'rosrun ros_rtsp imageStream.py | ~/catkin_ws/src/ros_rtsp/src/rtsp_server "fdsrc fd=0 ! queue2 ! videoparse format=i420 height={height} width={width} framerate={framerate}/1 ! videoconvert ! x264enc pass=5 quantizer={qvalue} speed-preset={speed} bitrate={bitrate} ! rtph264pay name=pay0 pt=96" {port} {url}'.format(height=str(rospy.get_param("image_height")), width=str(rospy.get_param("image_width")), framerate=str(rospy.get_param("fps")), qvalue=str(rospy.get_param("qvalue")), speed=str(rospy.get_param("speed-preset")), bitrate=str(rospy.get_param("bitrate")), port=str(rospy.get_param("port")), url=str(rospy.get_param("url")))
                 process = subprocess.Popen(bashCommand, shell=True)
                 self.serverStarted = True
                 

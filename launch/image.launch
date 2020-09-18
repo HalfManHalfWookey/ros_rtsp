@@ -11,6 +11,8 @@
     <param name="speed-preset" value="$(arg speed-preset)" />
     <arg name="qvalue" default="18" />
     <param name="qvalue" value="$(arg qvalue)" />
-    <node name="test_rtsp_server" pkg="ros_rtsp" type="imageSetup.py" output="screen">  
+    <arg name="port" default="8554" />
+    <param name="port" value="$(arg port)" />
+    <node name="RTSP_$(anon Server)" pkg="ros_rtsp" type="imageSetup.py" output="screen">  
     </node>
 </launch>

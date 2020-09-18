@@ -34,9 +34,12 @@ static GOptionEntry entries[] = {
 int
 main (int argc, char *argv[])
 {
+  /*Casting port into char*/
+  const char * port_value = argv[2];
+
   /*Setting server url*/
   char server_url[30] = "/";
-  strcat( server_url, argv[2]);
+  strcat( server_url, argv[3]);
   g_print("Setting server URL to: %s\n", server_url);
 
   GMainLoop *loop;
@@ -62,7 +65,7 @@ main (int argc, char *argv[])
 
   /* create a server instance */
   server = gst_rtsp_server_new ();
-  g_object_set (server, "service", port, NULL);
+  g_object_set (server, "service", port_value, NULL);
 
   /* get the mount points for this server, every server has a default object
    * that be used to map uri mount points to media factories */
@@ -86,7 +89,7 @@ main (int argc, char *argv[])
   gst_rtsp_server_attach (server, NULL);
 
   /* start serving */
-  g_print ("stream ready at rtsp://127.0.0.1:%s%s\n", port, server_url);
+  g_print ("stream ready at rtsp://127.0.0.1:%s%s\n", port_value, server_url);
   g_main_loop_run (loop);
 
   return 0;
