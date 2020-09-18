@@ -50,7 +50,7 @@ Example launch lines:
 - ```roslaunch rtsp_ros image.launch topic:=/usb/image_raw fps:=15 bitrate:=2048 url:=frontcam```
 - ```roslaunch rtsp_ros compressedImage.launch topic:=/usb/jpg fps:=30 bitrate:=5000 url:=kuka_arm```
 
-# Parameters:
+### Parameters:
 
 - topic: ROS image topic that forms the stream
 - port: Port that the stream will be available on
