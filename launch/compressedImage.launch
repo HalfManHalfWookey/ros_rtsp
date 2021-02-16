@@ -1,15 +1,16 @@
+<?xml version="1.0"?>
 <launch>
     <arg name="topic" default="test" />
     <param name="image_topic" value="$(arg topic)" />
-    <arg name="bitrate" default="2048" />
+    <arg name="bitrate" default="4096" />
     <param name="bitrate" value="$(arg bitrate)" />
-    <arg name="fps" default="15" />
+    <arg name="fps" default="30" />
     <param name="fps" value="$(arg fps)" />
     <arg name="url" default="test" />
     <param name="url" value="$(arg url)" />
-    <arg name="speed-preset" default="5" />
+    <arg name="speed-preset" default="1" />
     <param name="speed-preset" value="$(arg speed-preset)" />
-    <arg name="qvalue" default="18" />
+    <arg name="qvalue" default="30" />
     <param name="qvalue" value="$(arg qvalue)" />
     <arg name="port" default="8554" />
     <param name="port" value="$(arg port)" />
