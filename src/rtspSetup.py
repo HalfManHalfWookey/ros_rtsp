@@ -2,10 +2,6 @@
 import sys
 import subprocess
 import rospy
-import cv2
-import numpy as np
-from cv_bridge import CvBridge
-from sensor_msgs.msg import CompressedImage
 
 class bashSetUp():
     def __init__(self):
