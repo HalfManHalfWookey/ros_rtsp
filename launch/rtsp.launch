@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="topic" default="test" />
+    <param name="image_topic" value="$(arg topic)" />
+    <arg name="bitrate" default="4096" />
+    <param name="bitrate" value="$(arg bitrate)" />
+    <arg name="fps" default="30" />
+    <param name="fps" value="$(arg fps)" />
+    <arg name="url" default="test" />
+    <param name="url" value="$(arg url)" />
+    <arg name="speed-preset" default="1" />
+    <param name="speed-preset" value="$(arg speed-preset)" />
+    <arg name="qvalue" default="30" />
+    <param name="qvalue" value="$(arg qvalue)" />
+    <arg name="port" default="8554" />
+    <param name="port" value="$(arg port)" />
+    <arg name="rtsp_uri" default="rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov"/>
+    <param name="rtsp_uri" value="$(arg rtsp_uri)"/>
+    <node name="RTSP_$(anon Server)" pkg="ros_rtsp" type="rtspSetup.py" output="screen">  
+    </node>
+</launch>
